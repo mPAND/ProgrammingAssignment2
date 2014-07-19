@@ -46,7 +46,7 @@
 #
 
 # function to convert matrix to "special matrix"
-makeCacheMatrix <- function(m = matrix()) {
+makeCacheMatrix <- function(x = matrix()) {
 
 #  set im ( variable to store inverse matrix ) to NULL 
 		im <- NULL 
@@ -67,7 +67,7 @@ makeCacheMatrix <- function(m = matrix()) {
         getinverse <- function() im
 
 		# Calling set function to set the om initally
-		#set(m)
+		#set(x)
 		
         list(set = set, get = get,
              setinverse = setinverse,
@@ -75,7 +75,7 @@ makeCacheMatrix <- function(m = matrix()) {
 }
 
 # function to get or calculate inverse matrix 
-cacheSolve <- function(x) {
+cacheSolve <- function(x,...) {
 
         # Check if inverse matrix exits
         m <- x$getinverse()
@@ -89,7 +89,7 @@ cacheSolve <- function(x) {
 		# if im not exits, get the original data
         data <- x$get()
 		# calculate the inverse matrix
-        m <- solve(data)
+        m <- solve(data,...)
         # save the inverse matrix value for future use
 		x$setinverse(m)
 		# return the inverse matrix value
